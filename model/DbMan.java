@@ -9,13 +9,12 @@ public class DbMan {
 		con = null;
 	    try {
 			Class.forName("org.sqlite.JDBC");
-			con = (Connection) DriverManager.getConnection("jdbc:sqlite:se_projet.db");
+			con = (Connection) DriverManager.getConnection("jdbc:sqlite:./src/se_projet.db");
 			this.createTables();
 		    con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
