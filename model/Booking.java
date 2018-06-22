@@ -1,21 +1,34 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Booking {
-	private Field field;
-	private Date date;
+	private int field;
+	private LocalDate date;
 	private String phoneNumber;
+	private int time;
+	
 	/**
 	 * @param field
 	 * @param date
 	 * @param phoneNumber
 	 */
-	public Booking(Field field, Date date, String phoneNumber) {
+	public Booking(int field, LocalDate date, String phoneNumber, int time) {
 		super();
 		this.field = field;
 		this.date = date;
 		this.phoneNumber = phoneNumber;
+		this.time = time;
+	}
+	public int getField() {
+		return field;
+	}
+	public LocalDate getDate() {
+		return date;
+	}
+	public int getTime() {
+		return time;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;

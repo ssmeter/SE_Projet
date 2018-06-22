@@ -12,4 +12,10 @@ public class Field {
 		this.fID = fID;
 		this.fName = fName;
 	}
+	public int getfID() {
+		return fID;
+	}
+	public String getfName() {
+		return fName;
+	}
 }
