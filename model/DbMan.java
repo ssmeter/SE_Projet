@@ -73,10 +73,23 @@ public class DbMan {
 		String sql = "SELECT * FROM bookings WHERE date=?";
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 		preparedStatement.setString(1, d.toString());
-		ResultSet rs = preparedStatement.executeQuery(sql);
+		ResultSet rs = preparedStatement.executeQuery();
 		ArrayList<Booking> result = new ArrayList<>();
 		while(rs.next()){
 			result.add(new Booking(rs.getInt("fid"), LocalDate.parse(rs.getString("date")), rs.getString("phone_number"), rs.getInt("time")));
+		}
+		this.disconnect();
+		return result;
+	}
+	
+	public ArrayList<Field> getFields() throws SQLException{
+		this.connect();
+		String sql = "SELECT * FROM fields";
+		PreparedStatement preparedStatement = con.prepareStatement(sql);
+		ResultSet rs = preparedStatement.executeQuery();
+		ArrayList<Field> result = new ArrayList<>();
+		while(rs.next()){
+			result.add(new Field(rs.getInt("fid"), rs.getString("fname")));
 		}
 		this.disconnect();
 		return result;
