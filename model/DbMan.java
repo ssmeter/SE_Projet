@@ -4,7 +4,6 @@ import java.sql.*;
 
 public class DbMan {
 	Connection con;
-	
 	public DbMan(){
 		con = null;
 	    try {
