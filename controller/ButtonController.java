@@ -10,6 +10,7 @@ import model.BookingList;
 import model.FieldMan;
 import view.AddBooking;
 import view.MainContainer;
+import view.RemoveBooking;
 
 public class ButtonController implements ActionListener{
 	private MainContainer screen;
@@ -38,6 +39,8 @@ public class ButtonController implements ActionListener{
 			//this.screen.getBm().addBooking(fieldID, "0992324343", time);
 			//temp.setBackground(Color.red);
 			new AddBooking(screen, time, fieldID, temp).setVisible(true);
+		}else{
+			new RemoveBooking();
 		}
 	}
 }
