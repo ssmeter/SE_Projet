@@ -36,8 +36,8 @@ public class BookingList {
 		return bookings;
 	}
 	
-	public void addBooking(int field, LocalDate date, String phoneNumber, int time) {
-		Booking b = new Booking(field, date, phoneNumber, time);
+	public void addBooking(int field, String phoneNumber, int time) {
+		Booking b = new Booking(field, this.date, phoneNumber, time);
 		try {
 			//Add the booking to the database
 			db.addBooking(b);
@@ -47,4 +47,12 @@ public class BookingList {
 		//Add the booking to the current ArrayList
 		bookings.add(b);
 	}	
+	
+	public boolean isBooked(int fid, int time){
+		for(Booking temp : bookings){
+			if(temp.getField() == fid && temp.getTime() == time)
+				return true;
+		}
+		return false;
+	}
 }
