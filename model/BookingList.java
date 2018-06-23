@@ -31,6 +31,10 @@ public class BookingList {
 		this.date = date;
 		this.updateBookings();
 	}
+	
+	public LocalDate getDate(){
+		return this.date;
+	}
 
 	public List<Booking> getBookings() {
 		return bookings;
