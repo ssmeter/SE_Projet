@@ -41,28 +41,34 @@ public class MainContainer extends JFrame{
 	    	tp.setHorizontalAlignment(JLabel.CENTER);
 		    this.add(tp);
 	    }
-	    int ROWS = 12;
-	    int COLS = nbTerrain;
-	    		
-	    buttonGrid = new JButton[ROWS][COLS];
+	    
+	    initButton();
 	    updateButton();
 	    
     	this.setVisible(true);
 	 }
 	
+	private void initButton(){
+		buttonGrid = new JButton[12][nbTerrain];
+		for(int j = 9; j <= 20; j++){
+		    for(int i = 0; i < nbTerrain; i++){
+			    	JButton tp = new JButton(j + "h");
+			    	tp.addActionListener(new ButtonController(this));
+			    	buttonGrid[j-9][i] = tp;
+			    	tp.setOpaque(true);
+				    this.add(tp);
+		    }
+    	}
+	}
+	
 	public void updateButton(){
     	for(int j = 9; j <= 20; j++){
 		    for(int i = 0; i < nbTerrain; i++){
-			    	JButton tp = new JButton(j + "h");
 			    	if(bm.isBooked(fm.getFields().get(i).getfID(), j))
-			    		tp.setBackground(Color.red);
+			    		buttonGrid[j-9][i].setBackground(Color.red);
 			    	else
-			    		tp.setBackground(Color.green);
-			    	tp.addActionListener(new ButtonController(this));
-			    	tp.setOpaque(true);
-			    	buttonGrid[j-9][i] = tp;
-				    this.add(tp);
-		    }
+			    		buttonGrid[j-9][i].setBackground(Color.green);
+			   }
     	}
     }
 	

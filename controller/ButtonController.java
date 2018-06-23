@@ -36,9 +36,7 @@ public class ButtonController implements ActionListener{
 		if(temp.getBackground() == Color.green){
 			int fieldID = this.screen.getFm().getFields().get(indexField).getfID();
 			int time = Integer.parseInt(temp.getText().substring(0, temp.getText().length()-1));
-			//this.screen.getBm().addBooking(fieldID, "0992324343", time);
-			//temp.setBackground(Color.red);
-			new AddBooking(screen, time, fieldID, temp).setVisible(true);
+			new AddBooking(screen, time, fieldID).setVisible(true);
 		}else{
 			new RemoveBooking();
 		}

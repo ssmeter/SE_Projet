@@ -20,13 +20,12 @@ public class AddBooking extends JFrame{
 	private int fid;
 	private JButton crenau;
 
-	public AddBooking(MainContainer m, int time, int fid, JButton j){
+	public AddBooking(MainContainer m, int time, int fid){
 		super();
 		this.mainCont = m;
 		this.inputPhone = new JTextField(10);
 		this.time = time;
 		this.fid = fid;
-		this.crenau = j;
 		
 	    this.setTitle("Add booking");
 	    this.setSize(400, 200);

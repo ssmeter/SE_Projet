@@ -20,7 +20,7 @@ public class AddBookingController implements ActionListener{
 		String str = ((JButton)e.getSource()).getText();
 		if(str.equals("Confirm")){
 			this.screen.getMainCont().getBm().addBooking(this.screen.getFid(), this.screen.getInputPhone().getText(), this.screen.getTime());
-			this.screen.getCrenau().setBackground(Color.RED);
+			this.screen.getMainCont().updateButton();
 			screen.setVisible(false);
 		}
 	}
