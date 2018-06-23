@@ -55,4 +55,16 @@ public class BookingList {
 		}
 		return false;
 	}
+	
+	public Booking isGoodNumber(int fid, int time, String phone){
+		for(Booking temp : bookings){
+			if(temp.getField() == fid && temp.getTime() == time && temp.getPhoneNumber().equals(phone))
+				return temp;
+		}
+		return null;
+	}
+	
+	public void removeBooking(Booking b){
+		this.bookings.remove(b);
+	}
 }

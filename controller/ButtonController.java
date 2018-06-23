@@ -33,12 +33,13 @@ public class ButtonController implements ActionListener{
 				}
 			}
 		}
+		
+		int fieldID = this.screen.getFm().getFields().get(indexField).getfID();
+		int time = Integer.parseInt(temp.getText().substring(0, temp.getText().length()-1));
 		if(temp.getBackground() == Color.green){
-			int fieldID = this.screen.getFm().getFields().get(indexField).getfID();
-			int time = Integer.parseInt(temp.getText().substring(0, temp.getText().length()-1));
 			new AddBooking(screen, time, fieldID).setVisible(true);
 		}else{
-			new RemoveBooking();
+			new RemoveBooking(screen, time, fieldID);
 		}
 	}
 }
