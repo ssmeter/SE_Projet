@@ -19,6 +19,7 @@ public class AddBooking extends JFrame{
 	private int time;
 	private int fid;
 	private JButton crenau;
+	private JLabel error;
 
 	public AddBooking(MainContainer m, int time, int fid){
 		super();
@@ -34,10 +35,20 @@ public class AddBooking extends JFrame{
 
 	    this.add(inputPhone, BorderLayout.CENTER);
 	    
+	    error = new JLabel("Invalid phone number.");
+	    error.setVisible(false);
+	    
 	    JButton confirm = new JButton("Confirm");
 	    confirm.addActionListener(new AddBookingController(this));
 	    
-	    this.add(confirm, BorderLayout.SOUTH);
+	    JPanel panel = new JPanel();
+	    panel.setLayout(new BorderLayout());
+	    
+	    panel.add(error, BorderLayout.NORTH);
+	    panel.add(confirm, BorderLayout.SOUTH);
+
+	    this.add(panel, BorderLayout.SOUTH);
+	   
 	    this.setLocationRelativeTo(null);
     	this.setVisible(true);
 	}
@@ -60,4 +71,10 @@ public class AddBooking extends JFrame{
 	public JButton getCrenau() {
 		return crenau;
 	}
+
+	public JLabel getError() {
+		return error;
+	}
+	
+	
 }
