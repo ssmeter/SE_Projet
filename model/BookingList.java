@@ -42,13 +42,17 @@ public class BookingList {
 	
 	public void addBooking(int field, String phoneNumber, int time) {
 		Booking b = new Booking(field, this.date, phoneNumber, time);
+		int id = -1;
 		try {
 			//Add the booking to the database
-			db.addBooking(b);
+			id = db.addBooking(b);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		//Add the booking to the current ArrayList
+		if (id != -1) {
+			b.setbID(id);
+		}
 		bookings.add(b);
 	}	
 	
@@ -69,6 +73,13 @@ public class BookingList {
 	}
 	
 	public void removeBooking(Booking b){
+		try {
+			//Remove the booking from the database
+			db.removeBooking(b);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		//Remove the booking from the current ArrayList
 		this.bookings.remove(b);
 	}
 }

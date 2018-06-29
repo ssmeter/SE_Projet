@@ -55,15 +55,30 @@ public class DbMan {
 		preparedStatement.executeUpdate();
 	}
 	
-	public void addBooking(Booking b) throws SQLException{
+	public int addBooking(Booking b) throws SQLException{
 		this.connect();
 		//Create table field
 		String sql = "INSERT INTO bookings (fid, date, time, phone_number) VALUES (?,?,?,?)";
-		PreparedStatement preparedStatement = con.prepareStatement(sql);
+		PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		preparedStatement.setInt(1, b.getField());
 		preparedStatement.setString(2, b.getDate().toString());
 		preparedStatement.setInt(3, b.getTime());
 		preparedStatement.setString(4, b.getPhoneNumber());
+		preparedStatement.executeUpdate();
+		int id = -1;
+		ResultSet rs = preparedStatement.getGeneratedKeys();
+		if (rs.next()) {
+			id = rs.getInt(1);
+		}
+		this.disconnect();
+		return id;
+	}
+	
+	public void removeBooking(Booking b) throws SQLException{
+		this.connect();
+		String sql = "DELETE FROM bookings WHERE bid = ?";
+		PreparedStatement preparedStatement = con.prepareStatement(sql);
+		preparedStatement.setInt(1, b.getbID());
 		preparedStatement.executeUpdate();
 		this.disconnect();
 	}
@@ -76,7 +91,14 @@ public class DbMan {
 		ResultSet rs = preparedStatement.executeQuery();
 		ArrayList<Booking> result = new ArrayList<>();
 		while(rs.next()){
-			result.add(new Booking(rs.getInt("fid"), LocalDate.parse(rs.getString("date")), rs.getString("phone_number"), rs.getInt("time")));
+			// Because when storing phoneNumber to database, the "0" at the beginning is removed
+			String phoneNumber = rs.getString("phone_number");
+			if (!phoneNumber.startsWith("0")) {
+				phoneNumber = "0" + phoneNumber;
+			}
+			Booking b = new Booking(rs.getInt("fid"), LocalDate.parse(rs.getString("date")), phoneNumber, rs.getInt("time")); 
+			b.setbID(rs.getInt("bid"));
+			result.add(b);
 		}
 		this.disconnect();
 		return result;

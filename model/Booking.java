@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Booking {
+	private int bID;
 	private int field;
 	private LocalDate date;
 	private String phoneNumber;
@@ -21,6 +22,14 @@ public class Booking {
 		this.phoneNumber = phoneNumber;
 		this.time = time;
 	}
+	public int getbID() {
+		return bID;
+	}
+
+	public void setbID(int bID) {
+		this.bID = bID;
+	}
+
 	public int getField() {
 		return field;
 	}
