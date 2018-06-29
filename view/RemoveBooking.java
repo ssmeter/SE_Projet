@@ -25,6 +25,10 @@ public class RemoveBooking extends JDialog{
 	
 	public RemoveBooking(MainContainer m, int time, int fieldID){
 		super();
+		this.mainCont = m;
+		this.time = time;
+		this.fieldID = fieldID;
+		
 		setBounds(100, 100, 440, 300);
 
 		setTitle("Remove a booking");
@@ -40,6 +44,7 @@ public class RemoveBooking extends JDialog{
 		this.phone = new JTextField();
 		phone.setBounds(54, 82, 313, 40);
 		phone.setBorder(new EmptyBorder(10,10,10,10));
+		phone.setHorizontalAlignment(JTextField.CENTER);
 	    Font inputFont = new Font("Arial", Font.PLAIN, 16);
 	    phone.setFont(inputFont);
 		getContentPane().add(phone);

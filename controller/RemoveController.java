@@ -24,6 +24,7 @@ public class RemoveController implements ActionListener{
 			Booking b = this.rb.getMainCont().getBm().isGoodNumber(this.rb.getFieldID(), this.rb.getTime(), this.rb.getPhone().getText());
 			if(b != null){
 				this.rb.getMainCont().getBm().removeBooking(b);
+				this.rb.getMainCont().updateButton();
 				rb.setVisible(false);
 			}
 			//else
