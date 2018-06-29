@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -31,6 +32,7 @@ public class MainContainer extends JFrame{
 	private JButton[][] buttonGrid;
 	private int nbTerrain;
 	private JDatePickerImpl datePicker;
+	private JPanel panel;
 	
 	public MainContainer(){
 		this.fm = new FieldMan();
@@ -38,15 +40,18 @@ public class MainContainer extends JFrame{
 		this.nbTerrain = fm.getFields().size();
 		
 	    this.setTitle("Football Field Booking");
-	    this.setSize(800, 900);
+	    this.setSize(800, 910);
 	    this.setLocationRelativeTo(null);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
-	    this.setLayout(new GridLayout(14, nbTerrain));
+	    
+	    panel = new JPanel();
+	    panel.setBorder(new EmptyBorder(10,0,0,0));
+	    panel.setLayout(new GridLayout(14, nbTerrain));
 	    
 	    JLabel date = new JLabel("Selected date:");
 	    date.setFont(new Font("Arial", Font.PLAIN, 16));
 	    date.setHorizontalAlignment(JLabel.CENTER);
-	    this.add(date);
+	    panel.add(date);
 	    
 	    //Initiliaze DatePicker
 	    UtilDateModel model = new UtilDateModel();
@@ -61,10 +66,10 @@ public class MainContainer extends JFrame{
 	    this.datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 	    
 	    datePicker.addActionListener(new DatePickerController(this));
-	    this.add(datePicker);
+	    panel.add(datePicker);
 	    
 	    //To respect the form of the grid
-	    this.add(new JLabel(""));
+	    panel.add(new JLabel(""));
 	    
 	    //Styling the name of the field
 	    Font fieldFont = new Font("Arial", Font.BOLD, 18);
@@ -80,7 +85,7 @@ public class MainContainer extends JFrame{
 	    	tp.setOpaque(true);
 	    	tp.setBorder(padding);
 	    	tp.setHorizontalAlignment(JLabel.CENTER);
-		    this.add(tp);
+		    panel.add(tp);
 	    }
 	    
 	    //init every button
@@ -88,6 +93,7 @@ public class MainContainer extends JFrame{
 	    //Put a color on every button
 	    updateButton();
 	    
+	    this.add(panel);
 //	    this.pack();
     	this.setVisible(true);
 	 }
@@ -101,7 +107,7 @@ public class MainContainer extends JFrame{
 			    	buttonGrid[j-9][i] = tp;
 			    	tp.setBorder(new LineBorder(this.getBackground()));
 			    	tp.setOpaque(true);
-				    this.add(tp);
+				    panel.add(tp);
 		    }
     	}
 	}
