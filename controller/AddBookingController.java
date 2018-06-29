@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import model.Booking;
 import view.AddBooking;
 
 public class AddBookingController implements ActionListener{
@@ -19,22 +20,13 @@ public class AddBookingController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String str = ((JButton)e.getSource()).getText();
 		if(str.equals("Confirm")){
-			if(isPhoneNumber(this.screen.getInputPhone().getText())) {
-				if (this.screen.getError().isVisible()) {
-					this.screen.getError().setVisible(false);
-				}
+			if(Booking.isPhoneNumber(this.screen.getInputPhone().getText())) {
 				this.screen.getMainCont().getBm().addBooking(this.screen.getFid(), this.screen.getInputPhone().getText(), this.screen.getTime());
 				this.screen.getMainCont().updateButton();
 				screen.setVisible(false);
 			} else {
-				this.screen.getError().setVisible(true);
-			}
-			
+				this.screen.getError().setForeground(Color.RED);
+			}	
 		}
-	}
-	
-	public boolean isPhoneNumber(String input) {
-		String pattern = "0\\d{8,9}";
-		return input.matches(pattern);
 	}
 }

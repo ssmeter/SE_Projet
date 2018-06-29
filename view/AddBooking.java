@@ -52,7 +52,7 @@ public class AddBooking extends JFrame{
 	    inputPhone.setHorizontalAlignment(JTextField.CENTER);
 	    container.add(inputPhone, BorderLayout.CENTER);
 	    
-	    error = new JLabel("Invalid phone number.");
+	    error = new JLabel("Invalid phone number format.");
 	    error.setForeground(container.getBackground());
 	    error.setPreferredSize(new Dimension(20,20));
 	    

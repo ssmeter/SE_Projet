@@ -42,4 +42,9 @@ public class Booking {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+	
+	public static boolean isPhoneNumber(String input) {
+		String pattern = "0\\d{8,9}";
+		return input.matches(pattern);
+	}
 }

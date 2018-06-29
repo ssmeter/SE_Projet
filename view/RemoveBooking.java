@@ -22,6 +22,7 @@ public class RemoveBooking extends JDialog{
 	private int time;
 	private int fieldID;
 	private JTextField phone;
+	private JLabel error;
 	
 	public RemoveBooking(MainContainer m, int time, int fieldID){
 		super();
@@ -48,7 +49,12 @@ public class RemoveBooking extends JDialog{
 	    Font inputFont = new Font("Arial", Font.PLAIN, 16);
 	    phone.setFont(inputFont);
 		getContentPane().add(phone);
-		 
+		
+		error = new JLabel("Invalid phone number format.");
+	    error.setForeground(getContentPane().getBackground());
+	    error.setPreferredSize(new Dimension(20,20));
+	    error.setBounds(55,185,200,50);
+		getContentPane().add(error);
 		
 		Border emptyBorder = BorderFactory.createEmptyBorder();
 		// Button OK
@@ -84,6 +90,14 @@ public class RemoveBooking extends JDialog{
 
 	public JTextField getPhone() {
 		return phone;
+	}
+
+	public JLabel getError() {
+		return error;
+	}
+
+	public void setError(JLabel error) {
+		this.error = error;
 	}
 	
 	
